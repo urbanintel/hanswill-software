@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="HansWill - 소프트웨어 외주/개발 스튜디오 포트폴리오" />
+  <title>HansWill | 소프트웨어 외주 포트폴리오</title>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="HansWill | 소프트웨어 외주 포트폴리오" />
+  <meta property="og:description" content="실서비스 수준의 웹/AI 시스템 개발 파트너" />
+  <meta property="og:type" content="website" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+  <style>
+    :root{
+      --bg:#ffffff;
+      --bg-alt:#f8fafc;
+      --panel:#ffffff;
+      --card:#ffffff;
+      --text:#1e293b;
+      --muted:#64748b;
+      --line:rgba(0,0,0,.08);
+      --accent:#3b82f6;
+      --accent2:#06b6d4;
+      --ok:#10b981;
+      --warn:#f59e0b;
+      --danger:#ef4444;
+      --shadow: 0 4px 20px rgba(0,0,0,.08);
+      --radius: 18px;
+      --radius2: 26px;
+      --max: 1100px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: var(--text);
+      line-height: 1.5;
+      background: var(--bg);
+      overflow-x:hidden;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    .container{ width: min(var(--max), calc(100% - 40px)); margin:0 auto; }
+
+    /* Top nav */
+    .nav{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(12px);
+      background: rgba(255,255,255,.95);
+      border-bottom:1px solid var(--line);
+    }
+    .nav-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+      gap:14px;
+    }
+    .nav-links{
+      display:flex; gap:14px; align-items:center;
+      font-size:14px; color:var(--muted);
+    }
+    .nav-links a{
+      padding:8px 10px;
+      border-radius:12px;
+      transition: .15s ease;
+    }
+    .nav-links a:hover{
+      background: rgba(59,130,246,.05);
+      color: var(--text);
+    }
+    .nav-cta{
+      display:flex; gap:10px; align-items:center;
+    }
+
+    /* Buttons */
+    .btn{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.8);
+      color:var(--text);
+      padding:10px 14px;
+      border-radius: 14px;
+      cursor:pointer;
+      transition:.15s ease;
+      font-weight:700;
+      font-size:14px;
+      display:inline-flex; align-items:center; gap:10px;
+      white-space:nowrap;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(59,130,246,.05); border-color: var(--accent); }
+    .btn.primary{
+      border: none;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 8px 25px rgba(59,130,246,.25);
+      color: #ffffff;
+    }
+    .btn.primary:hover{ filter: brightness(1.03); }
+    .btn.ghost{
+      background: transparent;
+      border: 1px solid rgba(255,255,255,.14);
+    }
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 12px;
+      border:1px solid rgba(59,130,246,.2);
+      background: rgba(59,130,246,.05);
+      border-radius:999px;
+      font-size:13px;
+      color:var(--accent);
+    }
+    .dot{
+      width:9px; height:9px; border-radius:99px;
+      background: var(--ok);
+      box-shadow: 0 0 0 4px rgba(16,185,129,.14);
+    }
+
+    /* Hero */
+    header{
+      padding:56px 0 30px;
+    }
+    .hero{
+      display:grid;
+      grid-template-columns: 1.12fr .88fr;
+      gap:28px;
+      align-items:stretch;
+    }
+    .hero h1{
+      margin: 14px 0 10px;
+      font-size: clamp(34px, 4.2vw, 54px);
+      line-height: 1.08;
+      letter-spacing:-.6px;
+    }
+    .hero p{
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.6;
+      max-width: 58ch;
+    }
+    .hero-actions{
+      display:flex; flex-wrap:wrap; gap:10px;
+      margin-top:18px;
+    }
+    .hero-grid{
+      background: var(--bg);
+      border:1px solid rgba(0,0,0,.12);
+      border-radius: var(--radius2);
+      padding: 18px;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-grid > *{ position:relative; }
+    .stats{
+      display:grid; grid-template-columns: 1fr 1fr;
+      gap:12px;
+      margin-top:8px;
+    }
+    .stat{
+      padding:14px;
+      border-radius: 16px;
+      border:1px solid rgba(0,0,0,.12);
+      background: rgba(255,255,255,.8);
+    }
+    .stat .k{
+      font-size:13px; color:var(--muted); margin-bottom:6px;
+    }
+    .stat .v{
+      font-weight:900; font-size:18px;
+    }
+    .mini{
+      margin-top:12px;
+      padding:14px;
+      border-radius:16px;
+      border:1px solid rgba(0,0,0,.12);
+      background: rgba(255,255,255,.7);
+      color: var(--muted);
+      font-size: 13px;
+      line-height:1.6;
+    }
+
+    /* Sections */
+    section{ padding: 60px 0; }
+    section:nth-child(even){ background: var(--bg-alt); }
+    section:nth-child(odd){ background: var(--bg); }
+    .section-title{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:14px;
+      margin-bottom: 16px;
+    }
+    .section-title h2{
+      margin:0;
+      font-size: 22px;
+      letter-spacing:-.2px;
+    }
+    .section-title p{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .grid-3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+    }
+    .card{
+      border:1px solid var(--line);
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow);
+      transition:.15s ease;
+      min-height: 150px;
+    }
+    .card:hover{ transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,.12); border-color: var(--accent); }
+    .card h3{ margin:0 0 8px; font-size:16px; }
+    .card p{ margin:0; color:var(--muted); font-size:14px; line-height:1.6; }
+    .tags{
+      display:flex; flex-wrap:wrap; gap:8px;
+      margin-top: 12px;
+    }
+    .tag{
+      font-size:12px;
+      color: var(--accent);
+      border:1px solid rgba(59,130,246,.2);
+      background: rgba(59,130,246,.05);
+      padding:6px 10px;
+      border-radius: 999px;
+    }
+
+    /* Portfolio list */
+    .portfolio{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:14px;
+    }
+    .proj{
+      border:1px solid var(--line);
+      background: var(--bg);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .proj > *{ position:relative; }
+    .proj .top{
+      display:flex; align-items:flex-start; justify-content:space-between; gap:10px;
+      margin-bottom: 10px;
+    }
+    .badge{
+      font-size:12px;
+      padding:6px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(59,130,246,.2);
+      background: rgba(59,130,246,.05);
+      color: var(--accent);
+    }
+    .proj h3{
+      margin:0;
+      font-size: 16px;
+      letter-spacing:-.2px;
+    }
+    .proj p{
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height:1.6;
+    }
+    .proj .links{
+      display:flex; flex-wrap:wrap; gap:10px;
+      margin-top: 14px;
+    }
+    .link{
+      display:inline-flex; align-items:center; gap:8px;
+      font-size: 13px;
+      padding:8px 10px;
+      border-radius: 12px;
+      border:1px solid var(--line);
+      background: rgba(59,130,246,.05);
+      transition:.15s ease;
+      color: var(--accent);
+    }
+    .link:hover{ transform: translateY(-1px); background: rgba(59,130,246,.1); }
+
+    /* Contact */
+    .contact{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:24px;
+      align-items:start;
+    }
+    .panel{
+      border:1px solid var(--line);
+      background: var(--panel);
+      border-radius: var(--radius2);
+      padding: 32px;
+      box-shadow: var(--shadow);
+    }
+    .contact-form{
+      padding: 30px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+    }
+    .contact-form iframe{
+      border: 1px solid rgba(0,0,0,.08);
+      box-shadow: 0 4px 12px rgba(0,0,0,.05);
+    }
+    label{ display:block; font-size:15px; color:var(--text); margin:16px 0 10px; font-weight:600; }
+    input, textarea{
+      width:100%;
+      padding: 16px 16px;
+      border-radius: 16px;
+      border: 2px solid var(--line);
+      background: var(--bg);
+      color: var(--text);
+      outline:none;
+      font-size: 16px;
+      transition: all 0.2s ease;
+    }
+    textarea{ min-height: 150px; resize: vertical; }
+    input:hover, textarea:hover{
+      border-color: var(--accent);
+    }
+    input:focus, textarea:focus{
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(59,130,246,.1);
+    }
+    .row{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+    }
+    .hint{
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height:1.6;
+    }
+    .toast{
+      position: fixed;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.95);
+      border: 1px solid rgba(0,0,0,.14);
+      color: var(--text);
+      font-size: 13px;
+      backdrop-filter: blur(10px);
+      opacity: 0;
+      pointer-events: none;
+      transition: .18s ease;
+      z-index: 60;
+    }
+    .toast.show{ opacity: 1; transform: translateX(-50%) translateY(-4px); }
+
+    footer{
+      padding: 40px 0;
+      color: var(--muted);
+      font-size: 13px;
+      border-top: 1px solid var(--line);
+      background: var(--bg-alt);
+    }
+    .footer-inner{
+      display:flex; justify-content:space-between; align-items:center; gap:14px;
+      flex-wrap:wrap;
+    }
+    .small-links{ display:flex; gap:10px; flex-wrap:wrap; }
+    .small-links a{
+      padding: 6px 10px;
+      border-radius: 12px;
+      border:1px solid rgba(0,0,0,.10);
+      background: rgba(255,255,255,.6);
+    }
+    .small-links a:hover{ background: rgba(255,255,255,1); }
+
+    /* Responsive */
+    @media (max-width: 920px){
+      .hero{ grid-template-columns: 1fr; }
+      .grid-3{ grid-template-columns: 1fr; }
+      .portfolio{ grid-template-columns: 1fr; }
+      .contact{ grid-template-columns: 1fr; }
+      .nav-links{ display:none; }
+      .contact-form{ padding: 24px; }
+      .panel{ padding: 20px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Top nav -->
+  <div class="nav">
+    <div class="container nav-inner">
+
+      <nav class="nav-links" aria-label="사이트 메뉴">
+        <a href="#services">서비스</a>
+        <a href="#process">프로세스</a>
+        <a href="#contact">문의</a>
+      </nav>
+
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <header id="top">
+    <div class="container hero">
+      <div>
+        <h1>
+          아이디어를<br />
+          운영 가능한 제품으로.
+        </h1>
+        <p>
+          KAIST 박사 출신 개발자가 <b>AI/ML 연구 경험</b>과 <b>실무 개발 노하우</b>를 결합하여
+          고품질 소프트웨어를 직접 개발합니다. 학술적 깊이와 실용적 완성도를 모두 갖춘 솔루션을 제공합니다.
+        </p>
+        <div style="margin-top: 20px; padding: 16px; background: rgba(59,130,246,.05); border-radius: 12px; border: 1px solid rgba(59,130,246,.2);">
+          <div style="font-size: 14px; color: var(--accent); font-weight: 600;">개발문의: 한수민 (suminkaist@gmail.com)</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Services -->
+  <section id="services">
+    <div class="container">
+      <div class="section-title">
+        <h2>서비스</h2>
+        <p>필요한 것만 정확히, 빠르게 만들고 운영까지 연결합니다.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>웹 프론트/백엔드 개발</h3>
+          <p>반응형 웹사이트, 관리자 대시보드, API 서버, 데이터베이스 설계 등 웹 서비스 전체를 개발합니다.</p>
+          <div class="tags">
+            <span class="tag">Frontend</span>
+            <span class="tag">Backend</span>
+            <span class="tag">Database</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>안드로이드/iOS 앱 개발</h3>
+          <p>네이티브 모바일 앱부터 크로스 플랫폼 앱까지, 사용자 경험을 고려한 모바일 애플리케이션을 개발합니다.</p>
+          <div class="tags">
+            <span class="tag">Android</span>
+            <span class="tag">iOS</span>
+            <span class="tag">Cross Platform</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>LLM Agent 챗봇 개발</h3>
+          <p>대화형 AI 챗봇, 문서 기반 질의응답, 업무 자동화 에이전트 등 지능형 시스템을 구축합니다.</p>
+          <div class="tags">
+            <span class="tag">LLM</span>
+            <span class="tag">Chatbot</span>
+            <span class="tag">Agent</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section id="process">
+    <div class="container">
+      <div class="section-title">
+        <h2>진행 프로세스</h2>
+        <p>리스크를 줄이기 위해 “작게 → 빠르게 → 검증”합니다.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>1) 요구사항 정리 (1~3일)</h3>
+          <p>목표/우선순위/범위를 확정하고, 성공 기준(성능/UX/운영)을 합의합니다.</p>
+          <div class="tags"><span class="tag">Scope</span><span class="tag">Success Metric</span></div>
+        </div>
+        <div class="card">
+          <h3>2) MVP 구현 (1~3주)</h3>
+          <p>핵심 플로우를 먼저 구현하고, 주 단위 리뷰로 방향을 빠르게 맞춥니다.</p>
+          <div class="tags"><span class="tag">Weekly Review</span><span class="tag">빠른 반복</span></div>
+        </div>
+        <div class="card">
+          <h3>3) 런칭/운영 고도화</h3>
+          <p>배포/모니터링/로그/에러 대응을 구축해 실서비스 품질로 마무리합니다.</p>
+          <div class="tags"><span class="tag">Deploy</span><span class="tag">Monitoring</span><span class="tag">Docs</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" style="padding: 60px 0;">
+    <div class="container">
+      <div class="section-title" style="text-align: center; margin-bottom: 40px;">
+        <h2 style="font-size: 32px; margin-bottom: 12px;">프로젝트 문의</h2>
+        <p style="font-size: 18px; color: var(--muted);">KAIST 박사 출신 개발자와 직접 상담하세요</p>
+      </div>
+
+      <div class="contact">
+        <div class="panel contact-form">
+          <div style="display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom: 24px;">
+            <div style="font-weight:900; font-size:20px; color: var(--text);">개발 문의 및 상담</div>
+            <span class="badge">Google Forms</span>
+          </div>
+
+          <iframe 
+            src="https://docs.google.com/forms/d/e/1FAIpQLScUJT2kTHUpw90zpeETr6IMbTGzgxTzRxQEEPbYLeFVNu_DPg/viewform?embedded=true" 
+            width="100%" 
+            height="800" 
+            frameborder="0" 
+            marginheight="0" 
+            marginwidth="0"
+            style="border-radius: 12px; overflow: hidden;">
+            로딩 중...
+          </iframe>
+
+          <div style="margin-top: 16px; text-align: center; color: var(--muted); font-size: 13px;">
+            폼이 보이지 않으면 <a href="https://docs.google.com/forms/d/e/1FAIpQLScUJT2kTHUpw90zpeETr6IMbTGzgxTzRxQEEPbYLeFVNu_DPg/viewform" target="_blank" style="color: var(--accent); text-decoration: underline;">여기를 클릭</a>하여 새 창에서 작성해주세요.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>  <span id="year"></span> HansWill. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <!-- Business Information -->
+  <div style="background: #f1f5f9; border-top: 1px solid var(--line); padding: 30px 0; color: var(--muted); font-size: 13px;">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; text-align: left;">
+        <div>
+          <div style="margin-bottom: 8px;"><strong style="color: var(--text);">개발문의:</strong> 한수민 (suminkaist@gmail.com)</div>
+          <div><strong style="color: var(--text);">법인명:</strong> (주)한솔기업</div>
+        </div>
+        <div>
+          <div style="margin-bottom: 8px;"><strong style="color: var(--text);">대표자:</strong> 이정숙</div>
+          <div><strong style="color: var(--text);">사업자등록번호:</strong> 606-86-23862</div>
+        </div>
+        <div>
+          <div style="margin-bottom: 8px;"><strong style="color: var(--text);">법인등록번호:</strong> 180111-0717083</div>
+          <div><strong style="color: var(--text);">주소:</strong> 부산광역시 사상구 낙동대로 787(엄궁동)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">복사했습니다 </div>
+
+  <script>
+    // ====== 설정: 여기만 바꾸면 됨 ======
+    const SITE_URL = "https://hanswill.com/";
+    const CONTACT_EMAIL = "your-email@example.com"; // <-- 여기에 실제 이메일 넣기
+    // ===================================
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById("emailText").textContent = CONTACT_EMAIL;
+
+    const toast = document.getElementById("toast");
+    function showToast(msg){
+      toast.textContent = msg;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 1400);
+    }
+
+    async function copyText(text){
+      try{
+        await navigator.clipboard.writeText(text);
+        showToast("복사했습니다 ✅");
+      }catch(e){
+        // fallback
+        const t = document.createElement("textarea");
+        t.value = text;
+        document.body.appendChild(t);
+        t.select();
+        document.execCommand("copy");
+        document.body.removeChild(t);
+        showToast("복사했습니다 ✅");
+      }
+    }
+
+    document.getElementById("copyEmailBtn").addEventListener("click", () => {
+      copyText(CONTACT_EMAIL);
+    });
+
+    document.getElementById("copySiteBtn").addEventListener("click", () => {
+      copyText(SITE_URL);
+    });
+
+    document.getElementById("copyTemplateBtn").addEventListener("click", () => {
+      const template =
+`[HansWill 프로젝트 문의]
+- 이름/회사:
+- 연락처(이메일/메신저):
+- 프로젝트 주제:
+- 목표(성공 기준):
+- 필요한 기능(3~5개):
+- 참고 링크:
+- 예산(선택):
+- 일정(선택):
+- 기타:`;
+      copyText(template);
+    });
+
+    // Portfolio placeholder links
+    function openPlaceholder(e){
+      e.preventDefault();
+      showToast("링크를 실제 URL로 바꿔 넣어주세요 🙂");
+      return false;
+    }
+    window.openPlaceholder = openPlaceholder;
+  </script>
+</body>
+</html>
